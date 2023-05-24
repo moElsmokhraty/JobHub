@@ -7,12 +7,12 @@ import 'package:job_hub/core/widgets/reusable_text.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
-    required this.title,
+    this.title,
     required this.leading,
     this.actions,
   });
 
-  final String title;
+  final String? title;
   final Widget leading;
   final List<Widget>? actions;
 
@@ -27,7 +27,7 @@ class CustomAppBar extends StatelessWidget {
       actions: actions,
       centerTitle: true,
       title: ReusableText(
-        text: title,
+        text: title ?? '',
         style: appStyle(
           16,
           Color(kDark.value),

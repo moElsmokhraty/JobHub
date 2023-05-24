@@ -1,10 +1,9 @@
 import 'package:flutter/services.dart';
-import 'package:job_hub/features/auth/presentation/views/login_view/login_view.dart';
-import 'package:job_hub/features/auth/presentation/views/register_view/register_view.dart';
+import 'package:job_hub/features/main/presentation/providers/drawer_provider.dart';
+import 'package:job_hub/features/main/presentation/views/main_view.dart';
 import 'constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'controllers/zoom_provider.dart';
 import 'controllers/image_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'features/jobs/presentation/providers/jobs_provider.dart';
@@ -14,7 +13,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'features/auth/presentation/providers/profile_provider.dart';
 import 'features/bookmarks/presentation/providers/bookmark_provider.dart';
 import 'features/onboarding/presentation/providers/onboarding_provider.dart';
-import 'features/onboarding/presentation/views/onboarding_view/onboarding_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +27,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => OnBoardNotifier()),
         ChangeNotifierProvider(create: (context) => LoginNotifier()),
-        ChangeNotifierProvider(create: (context) => ZoomNotifier()),
+        ChangeNotifierProvider(create: (context) => DrawerNotifier()),
         ChangeNotifierProvider(create: (context) => RegisterNotifier()),
         ChangeNotifierProvider(create: (context) => JobsNotifier()),
         ChangeNotifierProvider(create: (context) => BookMarkNotifier()),
@@ -62,7 +60,7 @@ class JobHub extends StatelessWidget {
             ),
             primarySwatch: Colors.grey,
           ),
-          home: const RegisterView(),
+          home: const MainView(),
         );
       },
     );
