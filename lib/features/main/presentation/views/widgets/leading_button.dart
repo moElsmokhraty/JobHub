@@ -10,7 +10,7 @@ class LeadingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        ZoomDrawer.of(context)!.toggle();
+        ZoomDrawer.of(context)?.toggle();
       },
       child: SvgPicture.asset(
         'assets/icons/menu.svg',

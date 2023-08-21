@@ -1,28 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:job_hub/constants.dart';
-import 'package:job_hub/features/main/presentation/providers/drawer_provider.dart';
+import 'package:job_hub/core/utils/constants.dart';
+import 'package:job_hub/features/main/presentation/cubits/drawer_cubit/drawer_cubit.dart';
 import 'package:job_hub/features/main/presentation/views/widgets/custom_drawer.dart';
-import 'package:provider/provider.dart';
 
-class MainView extends StatefulWidget {
+class MainView extends StatelessWidget {
   const MainView({super.key});
 
   @override
-  State<MainView> createState() => _MainViewState();
-}
-
-class _MainViewState extends State<MainView> {
-  @override
   Widget build(BuildContext context) {
-    return Consumer<DrawerNotifier>(
-      builder: (context, zoomNotifier, child) => ZoomDrawer(
+    CustomDrawerCubit cubit = BlocProvider.of<CustomDrawerCubit>(context);
+    return BlocBuilder<CustomDrawerCubit, CustomDrawerState>(
+      builder: (context, state) => ZoomDrawer(
+        androidCloseOnBackTap: true,
         menuScreen: CustomDrawer(
           indexSetter: (index) {
-            zoomNotifier.currentIndex = index;
+            cubit.currentIndex = index;
           },
         ),
-        mainScreen: zoomNotifier.mainScreen(context),
+        mainScreen: WillPopScope(
+          onWillPop: () async {
+            if (cubit.currentIndex != 0) {
+              cubit.changeIndex(0);
+              return false;
+            }
+            return true;
+          },
+          child: cubit.mainScreen(context),
+        ),
         showShadow: true,
         borderRadius: 30,
         angle: 0.0,

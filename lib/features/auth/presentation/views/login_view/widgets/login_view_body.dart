@@ -1,119 +1,89 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:job_hub/core/utils/constants.dart';
+import 'package:job_hub/core/utils/routes_config/app_routes.dart';
+import 'package:job_hub/core/widgets/text_styles/app_style.dart';
+import 'package:job_hub/core/utils/cache_helper.dart';
+import 'package:job_hub/core/widgets/spacers/height_spacer.dart';
+import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
+import 'package:job_hub/core/widgets/text_fields/email_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:job_hub/constants.dart';
-import 'package:job_hub/core/widgets/app_style.dart';
-import 'package:job_hub/core/widgets/custom_btn.dart';
-import 'package:job_hub/core/widgets/custom_textfield.dart';
-import 'package:job_hub/core/widgets/height_spacer.dart';
-import 'package:job_hub/core/widgets/reusable_text.dart';
-import 'package:job_hub/features/auth/presentation/providers/login_provider.dart';
-import 'package:job_hub/features/auth/presentation/views/register_view/register_view.dart';
-import 'package:provider/provider.dart';
+import 'package:job_hub/core/functions/show_snack_bar.dart';
+import 'package:job_hub/core/widgets/text_fields/password_text_field.dart';
+import 'package:job_hub/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
+import 'package:job_hub/features/auth/presentation/views/login_view/widgets/login_button.dart';
+import 'package:job_hub/features/auth/presentation/views/login_view/widgets/create_account_text.dart';
 
-class LoginViewBody extends StatefulWidget {
+class LoginViewBody extends StatelessWidget {
   const LoginViewBody({Key? key}) : super(key: key);
 
   @override
-  State<LoginViewBody> createState() => _LoginViewBodyState();
-}
-
-class _LoginViewBodyState extends State<LoginViewBody> {
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    LoginNotifier().emailController.dispose();
-    LoginNotifier().passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Consumer<LoginNotifier>(
-      builder: (context, loginNotifier, child) => Form(
-        key: loginNotifier.key,
-        child: Container(
-          color: Color(kLight.value),
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            children: [
-              const HeightSpacer(size: 50),
-              ReusableText(
-                text: 'Welcome Back!',
-                style: appStyle(
-                  30,
-                  Color(kDark.value),
-                  FontWeight.w600,
-                ),
-              ),
-              const HeightSpacer(size: 10),
-              ReusableText(
-                text: 'Fill the details to login to your account.',
-                style: appStyle(
-                  16,
-                  Color(kDarkGrey.value),
-                  FontWeight.w600,
-                ),
-              ),
-              const HeightSpacer(size: 40),
-              CustomTextField(
-                controller: LoginNotifier().emailController,
-                hintText: 'Email',
-                keyboardType: TextInputType.emailAddress,
-                prefixIcon: const Icon(Icons.email_outlined),
-                validate: (emailController) {
-                  return loginNotifier.validateEmail(emailController!);
-                },
-              ),
-              const HeightSpacer(size: 20),
-              CustomTextField(
-                controller: LoginNotifier().passwordController,
-                hintText: 'Password',
-                keyboardType: TextInputType.text,
-                prefixIcon: const Icon(Icons.lock_outlined),
-                obsecure: loginNotifier.isObsecure,
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    loginNotifier.changeObsecure();
-                  },
-                  child: Icon(
-                    loginNotifier.isObsecure
-                        ? Icons.visibility_outlined
-                        : Icons.visibility_off_outlined,
-                    color: Color(kDark.value),
+    LoginCubit cubit = BlocProvider.of(context);
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) async {
+        if (state is LoginSuccess) {
+          showCustomSnackBar(context, 'Login Successful');
+          token = state.response.token;
+          userId = state.response.userData!.id!;
+          userImage = state.response.userData!.imageUrl!;
+          GoRouter.of(context).pushReplacement(AppRoutes.kMainView);
+          await Future.wait([
+            CacheHelper.setData(key: 'token', value: state.response.token),
+            CacheHelper.setData(
+                key: 'userId', value: state.response.userData!.id),
+            CacheHelper.setData(
+                key: 'userImage', value: state.response.userData!.imageUrl)
+          ]);
+        } else if (state is LoginFailure) {
+          showCustomSnackBar(context, 'Error: ${state.errMessage}');
+        }
+      },
+      builder: (context, state) {
+        return Form(
+          key: cubit.key,
+          child: Container(
+            color: Color(kLight.value),
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              children: [
+                const HeightSpacer(size: 50),
+                ReusableText(
+                  text: 'Welcome Back!',
+                  style: appStyle(
+                    30,
+                    Color(kDark.value),
+                    FontWeight.w600,
                   ),
                 ),
-                validate: (passwordController) {
-                  return loginNotifier.validatePassword(passwordController!);
-                },
-              ),
-              const HeightSpacer(size: 20),
-              Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.to(() => const RegisterView());
-                  },
-                  child: Text(
-                    'Don\'t have account? register!',
-                    style: appStyle(
-                      16,
-                      Color(kDark.value),
-                      FontWeight.w500,
-                    ),
+                const HeightSpacer(size: 10),
+                ReusableText(
+                  text: 'Fill the details to login to your account.',
+                  style: appStyle(
+                    16,
+                    Color(kDarkGrey.value),
+                    FontWeight.w600,
                   ),
                 ),
-              ),
-              const HeightSpacer(size: 20),
-              CustomButton(
-                text: 'Login',
-                onTap: () {},
-              ),
-            ],
+                const HeightSpacer(size: 40),
+                EmailTextField(emailController: cubit.emailController),
+                const HeightSpacer(size: 20),
+                PasswordTextField(
+                  passwordController: cubit.passwordController,
+                  changePasswordVisibility: cubit.changePasswordVisibility,
+                  isObscure: cubit.isObscure,
+                ),
+                const HeightSpacer(size: 20),
+                const CreateAccountText(),
+                const HeightSpacer(size: 20),
+                LoginButton(state: state, cubit: cubit),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

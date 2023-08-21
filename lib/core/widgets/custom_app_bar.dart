@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:job_hub/constants.dart';
-import 'package:job_hub/core/widgets/app_style.dart';
-import 'package:job_hub/core/widgets/reusable_text.dart';
+import 'package:job_hub/core/utils/constants.dart';
+import 'package:job_hub/core/widgets/text_styles/app_style.dart';
+import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
     this.title,
-    required this.leading,
+    this.leading,
     this.actions,
   });
 
   final String? title;
-  final Widget leading;
+  final Widget? leading;
   final List<Widget>? actions;
 
   @override

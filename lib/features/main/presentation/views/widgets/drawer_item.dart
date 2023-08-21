@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:job_hub/core/widgets/app_style.dart';
-import 'package:job_hub/core/widgets/reusable_text.dart';
-import 'package:job_hub/core/widgets/width_spacer.dart';
+import 'package:job_hub/core/widgets/text_styles/app_style.dart';
+import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
+import 'package:job_hub/core/widgets/spacers/width_spacer.dart';
 
 class DrawerItem extends StatelessWidget {
   const DrawerItem({

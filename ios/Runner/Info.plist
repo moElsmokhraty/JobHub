@@ -28,6 +28,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>We need to access your photo library so you can select an image for your account.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>We need access to your camera so you can take a photo to use as your account image.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
