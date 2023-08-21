@@ -67,8 +67,8 @@ class CustomDrawer extends StatelessWidget {
                   color: Color(cubit.currentIndex == 3
                       ? kLight.value
                       : kLightGrey.value),
-                  text: 'Device Management',
-                  icon: Icons.devices_outlined,
+                  text: 'Settings',
+                  icon: Icons.settings_outlined,
                 ),
                 DrawerItem(
                   onTap: () {

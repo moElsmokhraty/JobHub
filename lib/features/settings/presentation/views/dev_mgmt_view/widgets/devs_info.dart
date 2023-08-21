@@ -4,7 +4,7 @@ import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 import 'package:job_hub/core/widgets/buttons/custom_outline_button.dart';
 import 'package:job_hub/core/widgets/spacers/height_spacer.dart';
 import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
-import 'package:job_hub/features/device_management/data/models/dev_data.dart';
+import 'package:job_hub/features/settings/data/models/dev_data.dart';
 
 class DevsInfo extends StatelessWidget {
   const DevsInfo({super.key, required this.devData});

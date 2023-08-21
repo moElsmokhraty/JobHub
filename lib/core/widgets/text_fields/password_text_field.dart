@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:job_hub/core/functions/validate_password.dart';
 import 'package:job_hub/core/utils/constants.dart';
+import 'package:job_hub/core/functions/validate_password.dart';
 import 'package:job_hub/core/widgets/text_fields/custom_text_field.dart';
 
 class PasswordTextField extends StatelessWidget {
@@ -33,7 +33,7 @@ class PasswordTextField extends StatelessWidget {
         ),
       ),
       validate: (passwordController) {
-        //return validatePassword(passwordController!);
+        return validatePassword(passwordController!);
       },
     );
   }

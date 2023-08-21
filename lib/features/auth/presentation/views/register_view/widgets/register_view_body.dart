@@ -2,28 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_hub/core/utils/constants.dart';
-import 'package:job_hub/core/utils/routes_config/app_routes.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 import 'package:job_hub/core/widgets/buttons/custom_button.dart';
-import 'package:job_hub/core/widgets/text_fields/email_text_field.dart';
 import 'package:job_hub/core/widgets/spacers/height_spacer.dart';
+import 'package:job_hub/core/utils/routes_config/app_routes.dart';
 import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:job_hub/core/widgets/text_fields/email_text_field.dart';
 import 'package:job_hub/core/widgets/text_fields/password_text_field.dart';
+import 'package:job_hub/features/auth/presentation/cubits/register_cubit/register_cubit.dart';
 import 'package:job_hub/features/auth/presentation/views/register_view/widgets/login_text.dart';
 import 'package:job_hub/features/auth/presentation/views/register_view/widgets/name_text_field.dart';
-import 'package:job_hub/features/auth/presentation/cubits/register_and_update_cubit/register_and_update_cubit.dart';
 
 class RegisterViewBody extends StatelessWidget {
   const RegisterViewBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    RegisterAndUpdateCubit cubit = BlocProvider.of(context);
-    return BlocBuilder<RegisterAndUpdateCubit, RegisterAndUpdateState>(
+    RegisterCubit cubit = BlocProvider.of(context);
+    return BlocBuilder<RegisterCubit, RegisterState>(
       builder: (context, state) {
         return Form(
-          key: cubit.registerAndUpdateKey,
+          key: cubit.registerKey,
           child: Container(
             color: Color(kLight.value),
             child: ListView(
@@ -64,8 +64,7 @@ class RegisterViewBody extends StatelessWidget {
                 CustomButton(
                   text: 'Complete Info',
                   onTap: () async {
-                    if (cubit.registerAndUpdateKey.currentState!.validate()) {
-                      //cubit.registerAndUpdateKey.currentState!.save();
+                    if (cubit.registerKey.currentState!.validate()) {
                       GoRouter.of(context).push(
                         AppRoutes.kUpdateUserView,
                         extra: true,

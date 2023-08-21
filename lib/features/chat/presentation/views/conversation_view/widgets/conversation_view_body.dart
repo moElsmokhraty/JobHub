@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:job_hub/core/utils/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:job_hub/core/widgets/states/error_state.dart';
 import 'package:job_hub/features/chat/data/models/chat_models/chat.dart';
-import 'package:job_hub/features/chat/data/models/conversation_models/send_message_request.dart';
 import 'package:job_hub/features/chat/presentation/cubits/conversation_cubit/conversation_cubit.dart';
 import 'package:job_hub/features/chat/presentation/views/conversation_view/widgets/message_text_field.dart';
 import 'package:job_hub/features/chat/presentation/views/conversation_view/widgets/messages_body.dart';
-import 'package:job_hub/features/chat/presentation/views/conversation_view/widgets/messages_list_view.dart';
 
 class ConversationViewBody extends StatelessWidget {
   const ConversationViewBody({

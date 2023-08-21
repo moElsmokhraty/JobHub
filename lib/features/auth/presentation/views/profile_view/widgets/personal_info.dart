@@ -53,7 +53,9 @@ class PersonalInfo extends StatelessWidget {
                       ReusableText(
                         text: userData.location!,
                         style: appStyle(
-                            16, Color(kDarkGrey.value), FontWeight.w600),
+                            16,
+                            Color(kDarkGrey.value),
+                            FontWeight.w600),
                       ),
                     ],
                   )
@@ -63,10 +65,7 @@ class PersonalInfo extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              GoRouter.of(context).push(AppRoutes.kUpdateUserView, extra: {
-                'registering': false,
-                'userData': userData.toMap(),
-              });
+              GoRouter.of(context).push(AppRoutes.kUpdateUserView);
             },
             child: const Icon(
               Icons.mode_edit_rounded,
