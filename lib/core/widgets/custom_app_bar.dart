@@ -4,7 +4,7 @@ import 'package:job_hub/core/utils/constants.dart';
 import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     this.title,
@@ -17,10 +17,14 @@ class CustomAppBar extends StatelessWidget {
   final List<Widget>? actions;
 
   @override
+  Size get preferredSize => const Size.fromHeight(50);
+
+  @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Color(kLight.value),
-      elevation: 0,
+      elevation: 0.0,
+      scrolledUnderElevation: 0.0,
       automaticallyImplyLeading: false,
       leadingWidth: 70.w,
       leading: leading,
@@ -29,7 +33,7 @@ class CustomAppBar extends StatelessWidget {
       title: ReusableText(
         text: title ?? '',
         style: appStyle(
-          16,
+          18,
           Color(kDark.value),
           FontWeight.w600,
         ),

@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:job_hub/core/utils/cache_helper.dart';
-import 'package:job_hub/core/utils/routes_config/app_routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_hub/features/auth/data/repos/auth_repo/auth_repo_impl.dart';
 import 'package:job_hub/features/auth/data/models/login_models/login_request.dart';
 import 'package:job_hub/features/auth/data/models/login_models/login_response.dart';
@@ -34,17 +32,6 @@ class LoginCubit extends Cubit<LoginState> {
       (response) {
         emit(LoginSuccess(response));
       },
-    );
-  }
-
-  Future<void> logout(BuildContext context) async {
-    GoRouter.of(context).pushReplacement(AppRoutes.kLoginView);
-    await Future.wait(
-      [
-        CacheHelper.setData(key: 'token', value: ''),
-        CacheHelper.setData(key: 'userId', value: null),
-        CacheHelper.setData(key: 'userImage', value: null),
-      ],
     );
   }
 

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:job_hub/features/auth/data/models/update_user_models/user_data.dart';
+import 'package:job_hub/features/profile/data/models/update_user_models/user_data.dart';
 
 class LoginResponse {
   bool? status;

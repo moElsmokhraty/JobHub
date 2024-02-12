@@ -14,3 +14,5 @@ class ChangePasswordFailure extends ChangePasswordState {
 
   final String errMessage;
 }
+
+class ChangePasswordVisibility extends ChangePasswordState {}

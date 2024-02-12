@@ -1,0 +1,36 @@
+import 'dart:convert';
+import 'package:equatable/equatable.dart';
+import 'package:job_hub/features/home/data/models/job.dart';
+
+class UpdateJobResponse extends Equatable {
+  final bool? status;
+  final Job? job;
+  final String? message;
+
+  const UpdateJobResponse({this.status, this.job, this.message});
+
+  factory UpdateJobResponse.fromMap(Map<String, dynamic> data) {
+    return UpdateJobResponse(
+      status: data['status'] as bool?,
+      job: data['job'] == null
+          ? null
+          : Job.fromMap(data['job'] as Map<String, dynamic>),
+      message: data['message'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toMap() => {
+        'status': status,
+        'job': job?.toMap(),
+        'message': message,
+      };
+
+  factory UpdateJobResponse.fromJson(String data) {
+    return UpdateJobResponse.fromMap(json.decode(data) as Map<String, dynamic>);
+  }
+
+  String toJson() => json.encode(toMap());
+
+  @override
+  List<Object?> get props => [status, job, message];
+}

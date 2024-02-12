@@ -8,9 +8,7 @@ import 'package:job_hub/features/home/presentation/views/all_jobs_view/widgets/j
 import 'package:job_hub/features/home/presentation/views/search_view/widgets/search_widget.dart';
 
 class SearchViewBody extends StatelessWidget {
-  const SearchViewBody({super.key, required this.controller});
-
-  final TextEditingController controller;
+  const SearchViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +32,11 @@ class SearchViewBody extends StatelessWidget {
             return ListView.builder(
               itemCount: state.searchResults.length,
               itemBuilder: (context, index) {
-                return JobTile(
-                  job: Job.fromMap(state.searchResults[index]),
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: JobTile(
+                    job: Job.fromMap(state.searchResults[index]),
+                  ),
                 );
               },
             );

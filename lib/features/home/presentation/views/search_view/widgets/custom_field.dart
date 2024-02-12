@@ -4,7 +4,7 @@ import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 
 class CustomField extends StatelessWidget {
   const CustomField({
-    Key? key,
+    super.key,
     required this.hintText,
     required this.controller,
     this.validator,
@@ -12,7 +12,8 @@ class CustomField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText,
     this.onEditingComplete,
-  }) : super(key: key);
+    this.onSubmitted,
+  });
 
   final TextEditingController controller;
   final String hintText;
@@ -20,16 +21,18 @@ class CustomField extends StatelessWidget {
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final void Function()? onEditingComplete;
+  final void Function()? onSubmitted;
   final bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Color(kOrange.value),
-      child: TextField(
+      child: TextFormField(
         onTapOutside: (event) {
           FocusManager.instance.primaryFocus!.unfocus();
         },
+        validator: validator,
         keyboardType: keyboard,
         obscureText: obscureText ?? false,
         onEditingComplete: onEditingComplete,
@@ -63,7 +66,7 @@ class CustomField extends StatelessWidget {
         controller: controller,
         cursorHeight: 25,
         style: appStyle(14, Color(kLight.value), FontWeight.w500),
-        onSubmitted: validator,
+        onFieldSubmitted: (value) => onSubmitted!(),
       ),
     );
   }

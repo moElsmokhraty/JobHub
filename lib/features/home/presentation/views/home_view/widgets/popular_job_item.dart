@@ -48,13 +48,16 @@ class PopularJobItem extends StatelessWidget {
                     height: 40.h,
                     width: 50.w,
                   ),
-                  const WidthSpacer(width: 20),
-                  ReusableText(
-                    text: job.company!,
-                    style: appStyle(
-                      20,
-                      Color(kDark.value),
-                      FontWeight.bold,
+                  const WidthSpacer(width: 15),
+                  SizedBox(
+                    width: width * 0.4,
+                    child: ReusableText(
+                      text: job.company!,
+                      style: appStyle(
+                        20,
+                        Color(kDark.value),
+                        FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -80,12 +83,12 @@ class PopularJobItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    '${job.salary!}/${job.contract!}',
+                  ReusableText(
+                    text: job.salary!,
                     style: appStyle(
-                      22,
+                      20,
                       Color(kDark.value),
-                      FontWeight.w700,
+                      FontWeight.w500,
                     ),
                   ),
                   CircleAvatar(

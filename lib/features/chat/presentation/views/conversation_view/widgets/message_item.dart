@@ -1,17 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:job_hub/core/utils/constants.dart';
-import 'package:job_hub/core/widgets/text_styles/app_style.dart';
-import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
 import 'package:job_hub/core/widgets/spacers/width_spacer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:job_hub/features/chat/presentation/views/conversation_view/widgets/custom_chat_bubble.dart';
 
 class MessageItem extends StatelessWidget {
-  const MessageItem(
-      {super.key,
-      required this.senderId,
-      required this.senderImage,
-      required this.msgContent});
+  const MessageItem({
+    super.key,
+    required this.senderId,
+    required this.senderImage,
+    required this.msgContent,
+  });
 
   final String senderId;
   final String senderImage;
@@ -19,83 +18,24 @@ class MessageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMe = senderId == userId;
     return Row(
-      mainAxisAlignment:
-          senderId == userId ? MainAxisAlignment.end : MainAxisAlignment.start,
-      children: senderId == userId
+      mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+      children: isMe
           ? [
-              ChatBubble(
-                alignment: senderId == userId
-                    ? Alignment.centerRight
-                    : Alignment.centerLeft,
-                backGroundColor: senderId == userId
-                    ? Color(kOrange.value)
-                    : Color(kLightBlue.value),
-                elevation: 0,
-                clipper: ChatBubbleClipper4(
-                  radius: 8,
-                  type: senderId == userId
-                      ? BubbleType.sendBubble
-                      : BubbleType.receiverBubble,
-                ),
-                child: Container(
-                  constraints: BoxConstraints(
-                    maxWidth: width * 0.8,
-                  ),
-                  child: ReusableText(
-                    text: msgContent,
-                    style: appStyle(
-                      14,
-                      Color(kLight.value),
-                      FontWeight.normal,
-                    ),
-                  ),
-                ),
-              ),
+              CustomChatBubble(isMe: isMe, msgContent: msgContent),
               const WidthSpacer(width: 5),
               CircleAvatar(
                 radius: 15,
-                backgroundImage: CachedNetworkImageProvider(
-                  senderImage,
-                ),
+                backgroundImage: CachedNetworkImageProvider(senderImage),
               ),
             ]
           : [
               CircleAvatar(
-                radius: 15,
-                backgroundImage: CachedNetworkImageProvider(
-                  senderImage,
-                ),
-              ),
+                  radius: 15,
+                  backgroundImage: CachedNetworkImageProvider(senderImage)),
               const WidthSpacer(width: 5),
-              ChatBubble(
-                alignment: senderId == userId
-                    ? Alignment.centerRight
-                    : Alignment.centerLeft,
-                backGroundColor: senderId == userId
-                    ? Color(kOrange.value)
-                    : Color(kLightBlue.value),
-                elevation: 0,
-                clipper: ChatBubbleClipper4(
-                  radius: 8,
-                  type: senderId == userId
-                      ? BubbleType.sendBubble
-                      : BubbleType.receiverBubble,
-                ),
-                child: Container(
-                  constraints: BoxConstraints(
-                    maxWidth: width * 0.8,
-                  ),
-                  child: ReusableText(
-                    text: msgContent,
-                    style: appStyle(
-                      14,
-                      Color(kLight.value),
-                      FontWeight.normal,
-                    ),
-                  ),
-                ),
-              ),
+              CustomChatBubble(isMe: isMe, msgContent: msgContent),
             ],
     );
   }

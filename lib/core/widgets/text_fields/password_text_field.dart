@@ -9,17 +9,19 @@ class PasswordTextField extends StatelessWidget {
     required this.passwordController,
     required this.changePasswordVisibility,
     required this.isObscure,
+    this.hint,
   });
 
   final TextEditingController passwordController;
   final VoidCallback changePasswordVisibility;
   final bool isObscure;
+  final String? hint;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
       controller: passwordController,
-      hintText: 'Password',
+      hintText: hint ?? 'Password',
       keyboardType: TextInputType.text,
       prefixIcon: const Icon(Icons.lock_outlined),
       obsecure: isObscure,

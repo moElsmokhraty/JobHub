@@ -13,7 +13,7 @@ class ReusableText extends StatelessWidget {
       maxLines: 1,
       softWrap: false,
       textAlign: TextAlign.left,
-      overflow: TextOverflow.fade,
+      overflow: TextOverflow.ellipsis,
       style: style,
     );
   }

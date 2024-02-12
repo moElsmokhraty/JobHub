@@ -9,20 +9,17 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: true,
+      onPopInvoked: (value) async {
         GoRouter.of(context).pushReplacement(AppRoutes.kLoginView);
-        return true;
       },
       child: const SafeArea(
         top: false,
         child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(50),
-            child: CustomAppBar(
-              title: 'Register',
-              leading: SizedBox.shrink(),
-            ),
+          appBar: CustomAppBar(
+            title: 'Register',
+            leading: SizedBox.shrink(),
           ),
           body: RegisterViewBody(),
         ),

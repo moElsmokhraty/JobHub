@@ -1,31 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:job_hub/core/utils/constants.dart';
-import 'package:job_hub/core/widgets/custom_app_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:job_hub/features/main/presentation/views/widgets/leading_button.dart';
+import 'package:job_hub/core/widgets/text_styles/app_style.dart';
+import 'package:job_hub/features/drawer/presentation/views/widgets/leading_button.dart';
 
-class BookmarksAppBar extends StatelessWidget {
+class BookmarksAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BookmarksAppBar({super.key});
 
   @override
+  Size get preferredSize => Size.fromHeight(50.h);
+
+  @override
   Widget build(BuildContext context) {
-    return CustomAppBar(
+    return AppBar(
+      centerTitle: true,
+      scrolledUnderElevation: 0.0,
+      title: Text(
+        'Bookmarks',
+        style: appStyle(
+          16,
+          Color(kDark.value),
+          FontWeight.w600,
+        ),
+      ),
       actions: [
         Padding(
-          padding: EdgeInsets.all(
-            12.h,
-          ),
+          padding: EdgeInsets.all(12.h),
           child: CircleAvatar(
             radius: 15,
             backgroundImage: CachedNetworkImageProvider(userImage!),
           ),
         ),
       ],
-      leading: Padding(
-        padding: EdgeInsets.all(12.h),
-        child: const LeadingButton(),
-      ),
+      leading: const LeadingButton(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:job_hub/core/utils/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 import 'package:job_hub/core/widgets/spacers/height_spacer.dart';
 
@@ -27,7 +27,7 @@ class SecondPage extends StatelessWidget {
               'Stable yourself\n with your ability',
               textAlign: TextAlign.center,
               style: appStyle(
-                30,
+                32,
                 Color(kLight.value),
                 FontWeight.w500,
               ),
@@ -39,7 +39,7 @@ class SecondPage extends StatelessWidget {
                 'We help you find your dream job according to your skills, location, and preference to build your career',
                 textAlign: TextAlign.center,
                 style: appStyle(
-                  15,
+                  18,
                   Color(kLight.value),
                   FontWeight.normal,
                 ),

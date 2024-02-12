@@ -36,7 +36,10 @@ class AllJobsViewBody extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemCount: state.jobs.length,
               itemBuilder: (context, index) {
-                return JobTile(job: state.jobs[index]);
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: JobTile(job: state.jobs[index]),
+                );
               },
             );
           }

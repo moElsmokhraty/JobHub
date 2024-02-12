@@ -11,13 +11,17 @@ class MessageTextField extends StatelessWidget {
     super.key,
     required this.cubit,
     required this.chat,
+    required this.state,
   });
 
-  final ConversationCubit cubit;
   final Chat chat;
+  final ConversationCubit cubit;
+  final ConversationState state;
 
   @override
   Widget build(BuildContext context) {
+    String receiverId =
+        chat.users![0].id! == userId ? chat.users![1].id! : chat.users![0].id!;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 12.h),
       alignment: Alignment.bottomCenter,
@@ -28,10 +32,13 @@ class MessageTextField extends StatelessWidget {
         controller: cubit.msgController,
         onChanged: (value) {
           if (value.isNotEmpty) {
-            cubit.socket!.emit('typing', chat.id);
+            cubit.sendTypingEvent(chat.id!);
           } else {
-            cubit.socket!.emit('stop typing', chat.id);
+            cubit.sendStopTypingEvent(chat.id!);
           }
+        },
+        onTapOutside: (event) {
+          FocusManager.instance.primaryFocus!.unfocus();
         },
         keyboardType: TextInputType.multiline,
         style: appStyle(
@@ -50,18 +57,17 @@ class MessageTextField extends StatelessWidget {
                 return;
               }
               FocusManager.instance.primaryFocus!.unfocus();
-              await cubit.sendMessage(
+              cubit.sendMessage(
                 SendMessageRequest(
-                  content: cubit.msgController.text.toString(),
-                  chat: chat.id!,
-                  receiver: chat.users![0].id! == userId
-                      ? chat.users![1].id!
-                      : chat.users![0].id!,
+                  content: cubit.msgController.text,
+                  chatId: chat.id!,
+                  receiverId: receiverId,
                 ),
               ).then((value) async {
-                  await cubit.getAllMessages(chatId: chat.id!);
-                },
-              );
+                cubit.sendStopTypingEvent(chat.id!);
+                cubit.msgController.clear();
+                await cubit.getAllMessages(chatId: chat.id!);
+              });
             },
             child: Icon(
               Icons.send_outlined,

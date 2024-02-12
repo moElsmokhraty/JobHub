@@ -5,7 +5,9 @@ import 'package:job_hub/core/utils/routes_config/app_routes.dart';
 import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 
 class LoginText extends StatelessWidget {
-  const LoginText({super.key});
+  const LoginText({super.key, required this.reset});
+
+  final void Function() reset;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,7 @@ class LoginText extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           GoRouter.of(context).pushReplacement(AppRoutes.kLoginView);
+          reset();
         },
         child: Text(
           'Already have account? login!',

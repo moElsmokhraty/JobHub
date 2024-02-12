@@ -1,16 +1,34 @@
-# job_hub
+JobHub
+=============================
+JobHub is a simple job search app that uses Restful APIs to fetch job listings and display them to
+the user and provide the user with the ability to chat with the employer.
 
-A new Flutter project.
+## Screenshots
 
-## Getting Started
+|                                                                                                                                |                                                                                                                                 |                                                                                                                                 |
+|:------------------------------------------------------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707707405.png" width="600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707707409.png" width= "600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707707415.png" width= "600"/> |  
+| <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707707429.png" width="600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JobHub/blob/master/screenshots/Screenshot_1707707434.png" width="600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JobHub/blob/master/screenshots/Screenshot_1707707564.png" width="600"/> |
+| <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738404.png" width="600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738410.png" width="600"/>  | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738414.png" width="600"/>  |
+| <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707744646.png" width="600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738421.png" width="600"/>  | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738428.png" width="600"/>  |
+| <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707741138.png" width="600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738446.png" width="600"/>  | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707739016.png" width="600"/>  |
+| <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738998.png" width="600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707739005.png" width="600"/>  | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738458.png" width="600"/>  |
+| <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738479.png" width="600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738485.png" width="600"/>  | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738491.png" width="600"/>  |
+| <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738497.png" width="600"/> | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738504.png" width="600"/>  | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738564.png" width="600"/>  |
+|                                                                                                                                | <img alt="JobHub" src="https://github.com/moElsmokhraty/JoHub/blob/master/screenshots/Screenshot_1707738568.png" width="600"/>  |                                                                                                                                 |
 
-This project is a starting point for a Flutter application.
+## Used Technologies
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter
+- Cubit (State Management)
+- Dio (Http Client)
+- Restful APIs
+- MVVM Architecture Pattern
+- Dependency Injection (GetIt)
+- Shared Preferences (Local Storage)
+- Go Router (Navigation)
+- Url Launcher (Opening links)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Cloning Repo
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`git clone git@github.com:moElsmokhraty/JobHub.git`

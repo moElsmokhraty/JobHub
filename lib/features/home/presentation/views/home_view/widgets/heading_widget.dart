@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_hub/core/utils/constants.dart';
+import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
-import '../../../../../../core/widgets/text_styles/app_style.dart';
 
 class HeadingWidget extends StatelessWidget {
   const HeadingWidget({super.key, required this.text, this.onTap});

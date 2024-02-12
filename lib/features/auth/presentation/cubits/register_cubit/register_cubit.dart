@@ -14,6 +14,8 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   final GlobalKey<FormState> registerKey = GlobalKey<FormState>();
 
+  final GlobalKey<FormState> completeInfoKey = GlobalKey<FormState>();
+
   TextEditingController usernameController = TextEditingController();
 
   TextEditingController emailController = TextEditingController();
@@ -21,6 +23,8 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController passwordController = TextEditingController();
 
   TextEditingController phoneController = TextEditingController();
+
+  TextEditingController codeController = TextEditingController();
 
   TextEditingController locationController = TextEditingController();
 
@@ -31,8 +35,6 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController thirdSkillController = TextEditingController();
 
   TextEditingController fourthSkillController = TextEditingController();
-
-  TextEditingController fifthSkillController = TextEditingController();
 
   TextEditingController emoji = TextEditingController();
 
@@ -53,12 +55,12 @@ class RegisterCubit extends Cubit<RegisterState> {
   void changePasswordVisibility() {
     isObscure = !isObscure;
     suffix =
-    isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+        isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(ChangePasswordVisibility());
   }
 
   void changePhone(PhoneNumber phoneNumber) {
-    phoneController.text = phoneNumber.completeNumber;
+    phoneController.text = phoneNumber.number;
     emit(PhoneChanged());
   }
 
@@ -66,5 +68,18 @@ class RegisterCubit extends Cubit<RegisterState> {
     locationController.text = country.name;
     emoji.text = country.flagEmoji;
     emit(LocationChanged());
+  }
+
+  void reset() {
+    completeInfoKey.currentState!.reset();
+    emailController.clear();
+    usernameController.clear();
+    passwordController.clear();
+    locationController.clear();
+    phoneController.clear();
+    firstSkillController.clear();
+    secondSkillController.clear();
+    thirdSkillController.clear();
+    fourthSkillController.clear();
   }
 }

@@ -1,22 +1,25 @@
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
+import 'package:job_hub/features/chat/data/models/conversation_models/message.dart';
 
 class SendMessageResponse extends Equatable {
   final bool? status;
-  final String? message;
+  final Message? message;
 
   const SendMessageResponse({this.status, this.message});
 
   factory SendMessageResponse.fromMap(Map<String, dynamic> data) {
     return SendMessageResponse(
       status: data['status'] as bool?,
-      message: data['message'] as String?,
+      message: data['sentMessage'] == null
+          ? null
+          : Message.fromMap(data['sentMessage'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toMap() => {
         'status': status,
-        'message': message,
+        'sentMessage': message?.toMap(),
       };
 
   factory SendMessageResponse.fromJson(String data) {

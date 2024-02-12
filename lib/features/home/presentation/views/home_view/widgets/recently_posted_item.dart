@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:job_hub/core/utils/constants.dart';
-import 'package:job_hub/core/utils/routes_config/app_routes.dart';
-import 'package:job_hub/core/widgets/text_styles/app_style.dart';
-import 'package:job_hub/core/widgets/spacers/width_spacer.dart';
-import 'package:job_hub/core/widgets/spacers/height_spacer.dart';
-import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
 import 'package:job_hub/features/home/data/models/job.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:job_hub/core/widgets/spacers/width_spacer.dart';
+import 'package:job_hub/core/widgets/text_styles/app_style.dart';
+import 'package:job_hub/core/widgets/spacers/height_spacer.dart';
+import 'package:job_hub/core/utils/routes_config/app_routes.dart';
+import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
 
 class RecentlyPostedItem extends StatelessWidget {
   const RecentlyPostedItem({super.key, required this.job});
@@ -26,10 +26,7 @@ class RecentlyPostedItem extends StatelessWidget {
         );
       },
       child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 15.w,
-          vertical: 15.h,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
         decoration: BoxDecoration(
           color: Color(kLightGrey.value),
           borderRadius: BorderRadius.circular(25),
@@ -45,13 +42,16 @@ class RecentlyPostedItem extends StatelessWidget {
                   height: 40.h,
                   width: 50.w,
                 ),
-                const WidthSpacer(width: 20),
-                ReusableText(
-                  text: job.company!,
-                  style: appStyle(
-                    20,
-                    Color(kDark.value),
-                    FontWeight.bold,
+                const WidthSpacer(width: 15),
+                SizedBox(
+                  width: width * 0.6,
+                  child: ReusableText(
+                    text: job.company!,
+                    style: appStyle(
+                      20,
+                      Color(kDark.value),
+                      FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
@@ -65,24 +65,16 @@ class RecentlyPostedItem extends StatelessWidget {
                 FontWeight.w600,
               ),
             ),
-            ReusableText(
-              text: job.location!,
-              style: appStyle(
-                16,
-                Color(kDarkGrey.value),
-                FontWeight.w600,
-              ),
-            ),
-            const HeightSpacer(size: 15),
+            const HeightSpacer(size: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  '${job.salary!}/${job.contract!}',
+                ReusableText(
+                  text: job.location!,
                   style: appStyle(
-                    22,
-                    Color(kDark.value),
-                    FontWeight.w700,
+                    16,
+                    Color(kDarkGrey.value),
+                    FontWeight.w600,
                   ),
                 ),
                 CircleAvatar(
@@ -92,9 +84,18 @@ class RecentlyPostedItem extends StatelessWidget {
                     color: Colors.black,
                     size: 20.w,
                   ),
-                )
+                ),
               ],
-            )
+            ),
+            const HeightSpacer(size: 15),
+            ReusableText(
+              text: job.salary!,
+              style: appStyle(
+                20,
+                Color(kDark.value),
+                FontWeight.w500,
+              ),
+            ),
           ],
         ),
       ),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_hub/core/utils/constants.dart';
-import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 import 'package:job_hub/core/widgets/states/error_state.dart';
-import 'package:job_hub/core/widgets/states/loading_state/vertical_shimmer.dart';
+import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 import 'package:job_hub/features/home/presentation/cubits/jobs_cubit.dart';
+import 'package:job_hub/core/widgets/states/loading_state/vertical_shimmer.dart';
 import 'package:job_hub/features/home/presentation/views/home_view/widgets/recently_posted_item.dart';
 
 class RecentlyPostedListView extends StatelessWidget {
-  const RecentlyPostedListView({Key? key}) : super(key: key);
+  const RecentlyPostedListView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
-import '../job.dart';
+import 'package:job_hub/features/home/data/models/job.dart';
 
 class GetJobResponse extends Equatable {
   final bool? status;

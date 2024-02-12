@@ -9,14 +9,11 @@ class Job extends Equatable {
   final String? company;
   final String? description;
   final String? salary;
-  final String? period;
-  final String? contract;
+  final String? workHours;
+  final String? contractPeriod;
   final List<dynamic>? requirements;
   final String? imageUrl;
-  final String? agentId;
   final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final int? v;
 
   const Job({
     this.id,
@@ -25,36 +22,27 @@ class Job extends Equatable {
     this.company,
     this.description,
     this.salary,
-    this.period,
-    this.contract,
+    this.workHours,
+    this.contractPeriod,
     this.requirements,
     this.imageUrl,
-    this.agentId,
     this.createdAt,
-    this.updatedAt,
-    this.v,
   });
 
   factory Job.fromMap(Map<String, dynamic> data) => Job(
-        id: data['_id'] as String?,
-        title: data['title'] as String?,
-        location: data['location'] as String?,
-        company: data['company'] as String?,
-        description: data['description'] as String?,
-        salary: data['salary'] as String?,
-        period: data['period'] as String?,
-        contract: data['contract'] as String?,
-        requirements: data['requirements'] as List<dynamic>?,
-        imageUrl: data['imageUrl'] as String?,
-        agentId: data['agentId'] as String?,
-        createdAt: data['createdAt'] == null
-            ? null
-            : DateTime.parse(data['createdAt'] as String),
-        updatedAt: data['updatedAt'] == null
-            ? null
-            : DateTime.parse(data['updatedAt'] as String),
-        v: data['__v'] as int?,
-      );
+      id: data['_id'] as String?,
+      title: data['title'] as String?,
+      location: data['location'] as String?,
+      company: data['company'] as String?,
+      description: data['description'] as String?,
+      salary: data['salary'] as String?,
+      workHours: data['workHours'] as String?,
+      contractPeriod: data['contractPeriod'] as String?,
+      requirements: data['requirements'] as List<dynamic>?,
+      imageUrl: data['imageUrl'] as String?,
+      createdAt: data['createdAt'] == null
+          ? null
+          : DateTime.parse(data['createdAt'] as String));
 
   Map<String, dynamic> toMap() => {
         '_id': id,
@@ -63,14 +51,11 @@ class Job extends Equatable {
         'company': company,
         'description': description,
         'salary': salary,
-        'period': period,
-        'contract': contract,
+        'period': workHours,
+        'contract': contractPeriod,
         'requirements': requirements,
         'imageUrl': imageUrl,
-        'agentId': agentId,
         'createdAt': createdAt?.toIso8601String(),
-        'updatedAt': updatedAt?.toIso8601String(),
-        '__v': v,
       };
 
   /// `dart:convert`
@@ -94,14 +79,11 @@ class Job extends Equatable {
       company,
       description,
       salary,
-      period,
-      contract,
+      workHours,
+      contractPeriod,
       requirements,
       imageUrl,
-      agentId,
       createdAt,
-      updatedAt,
-      v,
     ];
   }
 }

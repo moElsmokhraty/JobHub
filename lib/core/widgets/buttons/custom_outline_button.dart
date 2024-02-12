@@ -9,16 +9,16 @@ class CustomOutlineButton extends StatelessWidget {
     required this.width,
     required this.text,
     required this.onTap,
-    required this.color1,
-    this.color2,
+    required this.textAndBorderColor,
+    this.backgroundColor,
   });
 
   final double height;
   final double width;
   final String text;
   final void Function() onTap;
-  final Color color1;
-  final Color? color2;
+  final Color textAndBorderColor;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,9 @@ class CustomOutlineButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          color: color2,
+          color: backgroundColor,
           border: Border.all(
-            color: color1,
+            color: textAndBorderColor,
             width: 1,
           ),
         ),
@@ -38,9 +38,9 @@ class CustomOutlineButton extends StatelessWidget {
           child: ReusableText(
             text: text,
             style: appStyle(
-              16,
-              color1,
-              FontWeight.w600,
+              18,
+              textAndBorderColor,
+              FontWeight.w500,
             ),
           ),
         ),

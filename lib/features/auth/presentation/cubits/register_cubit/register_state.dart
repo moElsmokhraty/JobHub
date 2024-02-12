@@ -20,4 +20,3 @@ class PhoneChanged extends RegisterState {}
 class LocationChanged extends RegisterState {}
 
 class ChangePasswordVisibility extends RegisterState {}
-

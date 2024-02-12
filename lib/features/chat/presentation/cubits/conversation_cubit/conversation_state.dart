@@ -42,3 +42,7 @@ class Typing extends ConversationState {}
 class StopTyping extends ConversationState {}
 
 class Online extends ConversationState {}
+
+class Offline extends ConversationState {}
+
+class MessageReceived extends ConversationState {}

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:job_hub/core/utils/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 import 'package:job_hub/core/widgets/spacers/height_spacer.dart';
 import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
@@ -24,7 +24,7 @@ class FirstPage extends StatelessWidget {
             ReusableText(
               text: 'Find Your Dream Job',
               style: appStyle(
-                35,
+                32,
                 Colors.white,
                 FontWeight.w500,
               ),
@@ -36,7 +36,7 @@ class FirstPage extends StatelessWidget {
                 'We help you find your dream job according to your skills, location, and preference to build your career',
                 textAlign: TextAlign.center,
                 style: appStyle(
-                  15,
+                  18,
                   Color(kLight.value),
                   FontWeight.normal,
                 ),

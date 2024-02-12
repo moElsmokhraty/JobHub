@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job_hub/core/widgets/states/loading_state/vertical_shimmer.dart';
 
 class SearchShimmer extends StatelessWidget {
-  const SearchShimmer({Key? key}) : super(key: key);
+  const SearchShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {

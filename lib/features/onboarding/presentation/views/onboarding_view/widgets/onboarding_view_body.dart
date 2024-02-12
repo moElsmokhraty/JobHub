@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_hub/core/utils/constants.dart';
-import 'package:job_hub/core/widgets/text_styles/app_style.dart';
-import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:job_hub/core/widgets/text_styles/app_style.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:job_hub/core/widgets/text_styles/reusable_text.dart';
 import 'package:job_hub/features/onboarding/presentation/cubits/onboarding_cubit/onboarding_cubit.dart';
 import 'package:job_hub/features/onboarding/presentation/views/onboarding_view/widgets/first_page.dart';
 import 'package:job_hub/features/onboarding/presentation/views/onboarding_view/widgets/third_page.dart';
 import 'package:job_hub/features/onboarding/presentation/views/onboarding_view/widgets/second_page.dart';
 
 class OnboardingViewBody extends StatelessWidget {
-  const OnboardingViewBody({Key? key}) : super(key: key);
+  const OnboardingViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,7 @@
+import 'dart:io';
+
 class APIConfig {
-  static const String baseUrl = 'http://10.0.2.2:5001/';
+  static String baseUrl = Platform.isAndroid ? 'http://10.0.2.2:5001/' : 'http://localhost:5001/';
   static const String loginEndpoint = 'login';
   static const String registerEndpoint = 'register';
   static const String updateUserEndpoint = 'updateUser';

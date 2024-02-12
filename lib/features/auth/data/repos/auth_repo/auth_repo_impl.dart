@@ -4,13 +4,13 @@ import 'package:job_hub/core/errors/failure.dart';
 import 'package:job_hub/core/utils/api_config/api_service.dart';
 import 'package:job_hub/core/utils/constants.dart';
 import 'package:job_hub/core/utils/api_config/api_config.dart';
+import 'package:job_hub/features/auth/data/models/delete_user_models/delete_user_request.dart';
+import 'package:job_hub/features/auth/data/models/delete_user_models/delete_user_response.dart';
 import 'package:job_hub/features/auth/data/repos/auth_repo/auth_repo.dart';
 import 'package:job_hub/features/auth/data/models/login_models/login_request.dart';
 import 'package:job_hub/features/auth/data/models/login_models/login_response.dart';
 import 'package:job_hub/features/auth/data/models/register_models/register_request.dart';
 import 'package:job_hub/features/auth/data/models/register_models/register_response.dart';
-import 'package:job_hub/features/auth/data/models/update_user_models/update_user_request.dart';
-import 'package:job_hub/features/auth/data/models/update_user_models/update_user_response.dart';
 import 'package:job_hub/features/auth/data/models/change_password_models/change_password_request.dart';
 import 'package:job_hub/features/auth/data/models/change_password_models/change_password_response.dart';
 
@@ -58,7 +58,7 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, ChangePasswordResponse>> changePassword(
       ChangePasswordRequest model) async {
     try {
-      var data = await _apiService.post(
+      var data = await _apiService.put(
         endpoint: APIConfig.changePasswordEndpoint,
         token: token,
         data: model.toMap(),
@@ -74,32 +74,15 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UpdateUserResponse>> updateUser(
-      UpdateUserRequest model) async {
+  Future<Either<Failure, DeleteUserResponse>> deleteUser(
+      DeleteUserRequest model) async {
     try {
-      var data = await _apiService.post(
-        endpoint: APIConfig.updateUserEndpoint,
-        token: token,
+      var data = await _apiService.delete(
         data: model.toMap(),
-      );
-      return Right(UpdateUserResponse.fromMap(data));
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      } else {
-        return Left(ServerFailure(errMessage: e.toString()));
-      }
-    }
-  }
-
-  @override
-  Future<Either<Failure, UpdateUserResponse>> getUser() async {
-    try {
-      var data = await _apiService.get(
-        endpoint: APIConfig.getUserEndpoint,
+        endpoint: APIConfig.deleteUserEndpoint,
         token: token,
       );
-      return Right(UpdateUserResponse.fromMap(data));
+      return Right(DeleteUserResponse.fromMap(data));
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

@@ -1,22 +1,18 @@
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
-import 'package:job_hub/features/auth/data/models/update_user_models/user_data.dart';
 import 'package:job_hub/features/chat/data/models/conversation_models/message.dart';
+import 'package:job_hub/features/profile/data/models/update_user_models/user_data.dart';
 
 class Chat extends Equatable {
   final String? id;
-  final String? chatName;
-  final bool? isGroupChat;
   final List<UserData>? users;
+  final Message? latestMessage;
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final int? v;
-  final Message? latestMessage;
 
   const Chat({
     this.id,
-    this.chatName,
-    this.isGroupChat,
     this.users,
     this.createdAt,
     this.updatedAt,
@@ -26,8 +22,6 @@ class Chat extends Equatable {
 
   factory Chat.fromMap(Map<String, dynamic> data) => Chat(
         id: data['_id'] as String?,
-        chatName: data['chatName'] as String?,
-        isGroupChat: data['isGroupChat'] as bool?,
         users: (data['users'] as List<dynamic>?)
             ?.map((e) => UserData.fromMap(e as Map<String, dynamic>))
             .toList(),
@@ -45,8 +39,6 @@ class Chat extends Equatable {
 
   Map<String, dynamic> toMap() => {
         '_id': id,
-        'chatName': chatName,
-        'isGroupChat': isGroupChat,
         'users': users?.map((e) => e.toMap()).toList(),
         'createdAt': createdAt?.toIso8601String(),
         'updatedAt': updatedAt?.toIso8601String(),
@@ -64,8 +56,6 @@ class Chat extends Equatable {
   List<Object?> get props {
     return [
       id,
-      chatName,
-      isGroupChat,
       users,
       createdAt,
       updatedAt,

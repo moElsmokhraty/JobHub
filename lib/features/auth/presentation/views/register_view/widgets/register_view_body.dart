@@ -15,7 +15,7 @@ import 'package:job_hub/features/auth/presentation/views/register_view/widgets/l
 import 'package:job_hub/features/auth/presentation/views/register_view/widgets/name_text_field.dart';
 
 class RegisterViewBody extends StatelessWidget {
-  const RegisterViewBody({Key? key}) : super(key: key);
+  const RegisterViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class RegisterViewBody extends StatelessWidget {
                 ReusableText(
                   text: 'Welcome to Job-Hub!',
                   style: appStyle(
-                    30,
+                    24,
                     Color(kDark.value),
                     FontWeight.w600,
                   ),
@@ -45,7 +45,7 @@ class RegisterViewBody extends StatelessWidget {
                   style: appStyle(
                     16,
                     Color(kDarkGrey.value),
-                    FontWeight.w600,
+                    FontWeight.w500,
                   ),
                 ),
                 const HeightSpacer(size: 40),
@@ -59,16 +59,16 @@ class RegisterViewBody extends StatelessWidget {
                   isObscure: cubit.isObscure,
                 ),
                 const HeightSpacer(size: 20),
-                const LoginText(),
+                LoginText(reset: cubit.reset),
                 const HeightSpacer(size: 20),
                 CustomButton(
                   text: 'Complete Info',
-                  onTap: () async {
+                  onTap: () {
                     if (cubit.registerKey.currentState!.validate()) {
-                      GoRouter.of(context).push(
-                        AppRoutes.kUpdateUserView,
-                        extra: true,
+                      GoRouter.of(context).pushReplacement(
+                        AppRoutes.kCompleteInfoView,
                       );
+                      cubit.registerKey.currentState!.reset();
                     }
                   },
                 ),

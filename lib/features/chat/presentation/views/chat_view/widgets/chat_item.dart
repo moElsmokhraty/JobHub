@@ -42,10 +42,14 @@ class ChatItem extends StatelessWidget {
             minLeadingWidth: 0,
             minVerticalPadding: 0,
             leading: CircleAvatar(
-              radius: 30,
-              child: CachedNetworkImage(
-                fit: BoxFit.fill,
-                imageUrl: chat.users![1].imageUrl!,
+              radius: 30.r,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30.r),
+                child: CachedNetworkImage(
+                  alignment: Alignment.center,
+                  fit: BoxFit.fill,
+                  imageUrl: chat.users![1].imageUrl!,
+                ),
               ),
             ),
             title: Column(
@@ -53,7 +57,9 @@ class ChatItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ReusableText(
-                  text: chat.users![1].username!,
+                  text: chat.users![0].id! == userId
+                      ? chat.users![1].username!
+                      : chat.users![0].username!,
                   style: appStyle(
                     15,
                     Color(kDark.value),
@@ -62,7 +68,7 @@ class ChatItem extends StatelessWidget {
                 ),
                 const HeightSpacer(size: 5),
                 ReusableText(
-                  text: chat.latestMessage?.content! ?? 'Start Conversation!',
+                  text: chat.latestMessage?.content ?? 'Start Conversation!',
                   style: appStyle(
                     15,
                     Color(kDark.value),
